@@ -1,0 +1,1 @@
+# Enerji-Iletim-Hatlarinin-Parametrelerinin-Otomatik-Hesaplanmasi

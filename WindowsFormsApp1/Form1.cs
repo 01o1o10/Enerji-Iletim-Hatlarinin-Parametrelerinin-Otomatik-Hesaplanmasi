@@ -164,18 +164,18 @@ namespace WindowsFormsApp1
             }
             if (ciftDemet.Checked)
             {
-                GMRd = Math.Pow(GMR * d * d, (1.0 / 2.0));
+                GMRd = Math.Pow(GMR * d, (1.0 / 2.0));
                 rd = Math.Pow(r * d, (1.0 / 2.0));
             }
             if (ucDemet.Checked)
             {
                 GMRd = Math.Pow(GMR * d * d, (1.0 / 3.0));
-                rd = Math.Pow(r * d, (1.0 / 3.0));
+                rd = Math.Pow(r * d *d, (1.0 / 3.0));
             }
             if (dortDemet.Checked)
             {
-                GMRd = Math.Pow(GMR * d * d, (1.0 / 4.0));
-                rd = Math.Pow(r * d, (1.0 / 4.0)) * 1.09;
+                GMRd = Math.Pow(GMR * d * d * d, (1.0 / 4.0));
+                rd = Math.Pow(r * d * d * d, (1.0 / 4.0)) * 1.09;
             }
             Console.WriteLine("GMRd: " + GMRd + " rd: " + rd);
 
@@ -230,7 +230,7 @@ namespace WindowsFormsApp1
                 GMRL = Math.Pow(GMRa * GMRb * GMRc, (1.0 / 3.0));
                 rK = Math.Pow(ra * rb * rc, (1.0 / 3.0));
 
-                L = 0.2 * Math.Log(direk.GMD * 1000 / GMRd);
+                L = 0.2 * Math.Log(direk.GMD * 1000 / GMRL);
                 C = 0.0556 / (Math.Log(direk.GMD * 1000 / rK));
             }
             else if (direk.devreTipi == 3)
@@ -256,8 +256,8 @@ namespace WindowsFormsApp1
                 C = 0.0556 / (Math.Log((direk.GMD * 1000) / rd));
             }
             Console.WriteLine("GMD: " + direk.GMD);
-            kl.Text = "L=" + Math.Round(L, 2);
-            kc.Text = "C=" + Math.Round(C, 2);
+            kl.Text = "L=" + Math.Round(L, 4);
+            kc.Text = "C=" + Math.Round(C, 4);
             L *= Math.Pow(10, -3);
             C *= Math.Pow(10, -6);
 
@@ -268,61 +268,79 @@ namespace WindowsFormsApp1
 
             if (string.Compare(uzunluk.Text, "") != 0) {
                 double omega = 2 * Math.PI * 50 * L;
-                
-                double Z = omega * Convert.ToDouble(uzunluk.Text);
+
+                double uznlkyuzde = 1.0;
+                switch (uzunlukyuzde.Text)
+                {
+                    case "100 %": uznlkyuzde = 1.0; break;
+                    case "90 %": uznlkyuzde = 0.9; break;
+                    case "80 %": uznlkyuzde = 0.8; break;
+                    case "70 %": uznlkyuzde = 0.7; break;
+                    case "60 %": uznlkyuzde = 0.6; break;
+                    case "50 %": uznlkyuzde = 0.5; break;
+                    case "40 %": uznlkyuzde = 0.4; break;
+                    case "30 %": uznlkyuzde = 0.3; break;
+                    case "20 %": uznlkyuzde = 0.2; break;
+                    case "10 %": uznlkyuzde = 0.1; break;
+                }
+
+                double uznlk = Convert.ToDouble(uzunluk.Text) * uznlkyuzde;
+                iletimhatuzunlugu.Text = "İletim Hattı Uzunluğu: " + uznlk.ToString();
+                Complex Z = new Complex(0, omega * uznlk);
                 kisaHat.A = 1;
                 kisaHat.B = Z;
                 kisaHat.C = 0;
                 kisaHat.D = 1;
 
-                kisahat_a.Text = kisaHat.A.ToString();
-                kisahat_b.Text = Math.Round(kisaHat.B, 2).ToString();
-                kisahat_c.Text = kisaHat.C.ToString();
-                kisahat_d.Text = kisaHat.D.ToString();
+                kisahat_a.Text = "[" + Math.Round(kisaHat.A.Real, 2).ToString() + "   " + Math.Round(kisaHat.A.Imaginary, 2).ToString() + "]";
+                kisahat_b.Text = "[" + Math.Round(kisaHat.B.Real, 2).ToString() + "   " + Math.Round(kisaHat.B.Imaginary, 2).ToString() + "]";
+                kisahat_c.Text = "[" + Math.Round(kisaHat.C.Real, 2).ToString() + "   " + Math.Round(kisaHat.C.Imaginary, 2).ToString() + "]";
+                kisahat_d.Text = "[" + Math.Round(kisaHat.D.Real, 2).ToString() + "   " + Math.Round(kisaHat.D.Imaginary, 2).ToString() + "]";
 
-                double omegaC = 2 * Math.PI * 50 * C;
-                double Y = omegaC;
+                Complex omegaC = new Complex(0, 2 * Math.PI * 50 * C);
+                Complex Y = omegaC;
 
-                ortaUzunHat.A = (1 + (Z * Y / 2));
+                ortaUzunHat.A = (1 + (Complex.Multiply(Z, Y) / 2));
                 ortaUzunHat.B = Z;
-                ortaUzunHat.C = (Y + (Z * Y * Y / 2));
-                ortaUzunHat.D = (1 + (Z * Y / 2));
+                ortaUzunHat.C = (Y + (Complex.Multiply(Complex.Multiply(Z, Y), Y) / 2));
+                ortaUzunHat.D = (1 + (Complex.Multiply(Z, Y) / 2));
 
-                ortauzunhat_a.Text = Math.Round(ortaUzunHat.A, 2).ToString();
-                ortauzunhat_b.Text = Math.Round(ortaUzunHat.B, 2).ToString();
-                ortauzunhat_c.Text = Math.Round(ortaUzunHat.C, 2).ToString();
-                ortauzunhat_d.Text = Math.Round(ortaUzunHat.D, 2).ToString();
+                ortauzunhat_a.Text = "[" + Math.Round(ortaUzunHat.A.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.A.Imaginary, 2).ToString() + "]";
+                ortauzunhat_b.Text = "[" + Math.Round(ortaUzunHat.B.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.B.Imaginary, 2).ToString() + "]";
+                ortauzunhat_c.Text = "[" + Math.Round(ortaUzunHat.C.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.C.Imaginary, 2).ToString() + "]";
+                ortauzunhat_d.Text = "[" + Math.Round(ortaUzunHat.D.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.D.Imaginary, 2).ToString() + "]";
 
 
-                ortaUzunHatT.A = (1 + (Z * Y / 2));
+                ortaUzunHatT.A = (1 + (Complex.Multiply(Z, Y) / 2));
                 ortaUzunHatT.B = Y;
-                ortaUzunHatT.C = (Z + (Z * Z * Y / 4));
-                ortaUzunHatT.D = (1 + (Z * Y / 2));
+                ortaUzunHatT.C = (Z + (Complex.Multiply(Complex.Multiply(Z, Z), Y) / 4));
+                ortaUzunHatT.D = (1 + (Complex.Multiply(Z, Y) / 2));
 
-                ortauzunhatt_a.Text = Math.Round(ortaUzunHatT.A, 2).ToString();
-                ortauzunhatt_b.Text = Math.Round(ortaUzunHatT.B, 2).ToString();
-                ortauzunhatt_c.Text = Math.Round(ortaUzunHatT.C, 2).ToString();
-                ortauzunhatt_d.Text = Math.Round(ortaUzunHatT.D, 2).ToString();
+                ortauzunhatt_a.Text = "[" + Math.Round(ortaUzunHatT.A.Real, 2).ToString() + "   " + Math.Round(ortaUzunHatT.A.Imaginary, 2).ToString() + "]";
+                ortauzunhatt_b.Text = "[" + Math.Round(ortaUzunHatT.B.Real, 2).ToString() + "   " + Math.Round(ortaUzunHatT.B.Imaginary, 2).ToString() + "]";
+                ortauzunhatt_c.Text = "[" + Math.Round(ortaUzunHatT.C.Real, 2).ToString() + "   " + Math.Round(ortaUzunHatT.C.Imaginary, 2).ToString() + "]";
+                ortauzunhatt_d.Text = "[" + Math.Round(ortaUzunHatT.D.Real, 2).ToString() + "   " + Math.Round(ortaUzunHatT.D.Imaginary, 2).ToString() + "]";
 
-                double sayi = Math.Sqrt(L * C ) * 360 * 50 * Convert.ToDouble(uzunluk.Text);
-                Complex gamma = new Complex(0, sayi);
+
+                Complex gamma = new Complex(0, Math.Sqrt(L * C) * 2 * Math.PI * 50 * Convert.ToDouble(uzunluk.Text));
 
                 double Zc = Math.Sqrt(L / C);
 
 
-                uzunHat.A = Complex.Cosh(gamma).Real;
-                uzunHat.B = Complex.Sinh(gamma).Real * Zc;
-                uzunHat.C = Complex.Sinh(gamma).Real / Zc;
-                uzunHat.D = Complex.Cosh(gamma).Real;
+                uzunHat.A = Complex.Cosh(gamma);
+                uzunHat.B = Complex.Sinh(gamma) * Zc;
+                uzunHat.C = Complex.Sinh(gamma) / Zc;
+                uzunHat.D = Complex.Cosh(gamma);
 
-                uzunhat_a.Text = "[" + Math.Round(uzunHat.A, 2).ToString() + "]";
-                uzunhat_b.Text = "[" + Math.Round(uzunHat.B, 2).ToString() + "]";
-                uzunhat_c.Text = "[" + Math.Round(uzunHat.C, 2).ToString() + "]";
-                uzunhat_d.Text = "[" + Math.Round(uzunHat.D, 2).ToString() + "]";
+                uzunhat_a.Text = "[" + Math.Round(uzunHat.A.Real, 2).ToString() + "   " + Math.Round(uzunHat.A.Imaginary, 2).ToString() + "]";
+                uzunhat_b.Text = "[" + Math.Round(uzunHat.B.Real, 2).ToString() + "   " + Math.Round(uzunHat.B.Imaginary, 2).ToString() + "]";
+                uzunhat_c.Text = "[" + Math.Round(uzunHat.C.Real, 2).ToString() + "   " + Math.Round(uzunHat.C.Imaginary, 2).ToString() + "]";
+                uzunhat_d.Text = "[" + Math.Round(uzunHat.D.Real, 2).ToString() + "   " + Math.Round(uzunHat.D.Imaginary, 2).ToString() + "]";
             }
 
             double U2 = Convert.ToDouble(this.hatsonugerilimi.Text);
-            double s2 = (U2 * U2) / Math.Sqrt(L/C);
+            double s2 = (Convert.ToDouble(s2katsayisi.Text) * (U2 * U2)) / Math.Sqrt(L/C);
+            hatsonugerililmi1.Text = "S2: " + s2.ToString();
             double I = s2 / (3 * U2);
 
             if (string.Compare(guckatsayisi.Text, "") != 0 && string.Compare(katsayitipi.Text, "") != 0)
@@ -341,29 +359,30 @@ namespace WindowsFormsApp1
                 double imajiner = I * deger;
 
                 Complex I2 = new Complex(real, imajiner);
-                Complex imgZ = new Complex(0, kisaHat.B);
+                Console.WriteLine(I2);
+                Complex imgZ = kisaHat.B;
                 kisaHat.U1 = new Complex();
                 kisaHat.U1 = U2 + Complex.Multiply(imgZ, I2);
-                kisaHat.I1 = new Complex(I2.Real, I2.Imaginary);
+                kisaHat.I1 = I2;
 
-                kisahat_u1.Text = "U1: " + Math.Round(kisaHat.U1.Real, 2).ToString() + "," + Math.Round(kisaHat.U1.Imaginary, 2).ToString();
-                kisahat_i1.Text = "I1: " + Math.Round(kisaHat.I1.Real, 2).ToString() + "," + Math.Round(kisaHat.I1.Imaginary, 2).ToString();
+                kisahat_u1.Text = "U1: " + Math.Round(kisaHat.U1.Real, 2).ToString() + "   " + Math.Round(kisaHat.U1.Imaginary, 2).ToString();
+                kisahat_i1.Text = "I1: " + Math.Round(kisaHat.I1.Real, 2).ToString() + "   " + Math.Round(kisaHat.I1.Imaginary, 2).ToString();
                 u2.Text = "U2: " + U2.ToString();
-                i2.Text = "I1: " + Math.Round(I2.Real, 2).ToString() + "," + Math.Round(I2.Imaginary, 2).ToString();
+                i2.Text = "I2: " + Math.Round(I2.Real, 2).ToString() + "   " + Math.Round(I2.Imaginary, 2).ToString();
 
                 ortaUzunHat.U1 = new Complex();
-                ortaUzunHat.U1 = ortaUzunHat.A * U2 + Complex.Multiply(new Complex(0, ortaUzunHat.B), I2);
-                ortaUzunHat.I1 = U2 * new Complex(0, ortaUzunHat.C) + ortaUzunHat.D * I2;
+                ortaUzunHat.U1 = ortaUzunHat.A * U2 + Complex.Multiply(ortaUzunHat.B, I2);
+                ortaUzunHat.I1 = U2 * ortaUzunHat.C + Complex.Multiply(ortaUzunHat.D, I2);
 
-                ortauzunhat_u1.Text = "U1: " + Math.Round(kisaHat.U1.Real, 2).ToString() + "," + Math.Round(kisaHat.U1.Imaginary, 2).ToString();
-                ortauzunhat_i1.Text = "I1: " + Math.Round(uzunHat.I1.Real, 2).ToString() + "," + Math.Round(uzunHat.I1.Imaginary, 2).ToString();
+                ortauzunhat_u1.Text = "U1: " + Math.Round(ortaUzunHat.U1.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.U1.Imaginary, 2).ToString();
+                ortauzunhat_i1.Text = "I1: " + Math.Round(ortaUzunHat.I1.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.I1.Imaginary, 2).ToString();
                 
-                uzunHat.U1 = new Complex();
-                uzunHat.U1 = uzunHat.A * uzunHat.B * I2;
-                uzunHat.I1 = U2 * uzunHat.C + uzunHat.D * I2;
+                
+                uzunHat.U1 = uzunHat.A * U2 + Complex.Multiply(uzunHat.B, I2);
+                uzunHat.I1 = U2 * uzunHat.C + Complex.Multiply(uzunHat.D, I2);
 
-                uzunhat_u1.Text = "U1: " + Math.Round(kisaHat.U1.Real, 2).ToString() + "," + Math.Round(kisaHat.U1.Imaginary, 2).ToString();
-                uzunhat_i1.Text = "I1: " + Math.Round(uzunHat.I1.Real, 2).ToString() + "," + Math.Round(uzunHat.I1.Imaginary, 2).ToString();
+                uzunhat_u1.Text = "U1: " + Math.Round(uzunHat.U1.Real, 2).ToString() + "   " + Math.Round(uzunHat.U1.Imaginary, 2).ToString();
+                uzunhat_i1.Text = "I1: " + Math.Round(uzunHat.I1.Real, 2).ToString() + "   " + Math.Round(uzunHat.I1.Imaginary, 2).ToString();
 
                 double P2 = s2 * gucKatsayisi;
                 double Q2 = s2 * Math.Sin(Math.Acos(gucKatsayisi));
@@ -380,35 +399,35 @@ namespace WindowsFormsApp1
                 uzunHat.P1 = uzunHat.S1.Real;
                 uzunHat.Q1 = uzunHat.S1.Imaginary;
 
-                p2.Text = P2.ToString();
-                q2.Text = Q2.ToString();
+                p2.Text = "P2: " + P2.ToString();
+                q2.Text = "Q2: " + Q2.ToString();
 
-                kisahat_p1.Text = kisaHat.P1.ToString();
-                kisahat_q1.Text = kisaHat.Q1.ToString();
+                kisahat_p1.Text = "P1: " + kisaHat.P1.ToString();
+                kisahat_q1.Text = "Q1: " + kisaHat.Q1.ToString();
 
-                ortauzunhat_p1.Text = ortaUzunHat.P1.ToString();
-                ortauzunhat_q1.Text = ortaUzunHat.Q1.ToString();
+                ortauzunhat_p1.Text = "P1: " + ortaUzunHat.P1.ToString();
+                ortauzunhat_q1.Text = "Q1: " + ortaUzunHat.Q1.ToString();
 
-                uzunhat_p1.Text = uzunHat.P1.ToString();
-                uzunhat_q1.Text = uzunHat.Q1.ToString();
+                uzunhat_p1.Text = "P1: " + uzunHat.P1.ToString();
+                uzunhat_q1.Text = "Q1: " + uzunHat.Q1.ToString();
 
                 kisaHat.M = (P2 / kisaHat.P1) * 100;
-                kisaHat.VR = ((Math.Sqrt(kisaHat.U1.Real * kisaHat.U1.Real + kisaHat.U1.Imaginary * kisaHat.U1.Imaginary) / kisaHat.A) - U2) / U2;
+                kisaHat.VR = ((Math.Sqrt(kisaHat.U1.Real * kisaHat.U1.Real + kisaHat.U1.Imaginary * kisaHat.U1.Imaginary)) - U2) / (U2/100);
 
                 ortaUzunHat.M = (P2 / ortaUzunHat.P1) * 100;
-                ortaUzunHat.VR = ((Math.Sqrt(ortaUzunHat.U1.Real * ortaUzunHat.U1.Real + ortaUzunHat.U1.Imaginary * ortaUzunHat.U1.Imaginary) / ortaUzunHat.A) - U2) / U2;
+                ortaUzunHat.VR = ((Math.Sqrt(ortaUzunHat.U1.Real * ortaUzunHat.U1.Real + ortaUzunHat.U1.Imaginary * ortaUzunHat.U1.Imaginary) / ortaUzunHat.A.Real) - U2) / (U2 / 100);
 
                 uzunHat.M = (P2 / uzunHat.P1) * 100;
-                uzunHat.VR = ((Math.Sqrt(uzunHat.U1.Real * uzunHat.U1.Real + uzunHat.U1.Imaginary * uzunHat.U1.Imaginary) / uzunHat.A) - U2) / U2;
+                uzunHat.VR = ((Math.Sqrt(uzunHat.U1.Real * uzunHat.U1.Real + uzunHat.U1.Imaginary * uzunHat.U1.Imaginary) / uzunHat.A.Real) - U2) / (U2 / 100);
 
-                kisahat_m.Text = kisaHat.M.ToString();
-                kisahat_vr.Text = kisaHat.VR.ToString();
+                kisahat_m.Text = "M: " + kisaHat.M.ToString();
+                kisahat_vr.Text = "VR: " + kisaHat.VR.ToString();
 
-                ortauzunhat_m.Text = ortaUzunHat.M.ToString();
-                ortauzunhat_vr.Text = ortaUzunHat.VR.ToString();
+                ortauzunhat_m.Text = "M: " + ortaUzunHat.M.ToString();
+                ortauzunhat_vr.Text = "VR: " + ortaUzunHat.VR.ToString();
 
-                uzunhat_m.Text = uzunHat.M.ToString();
-                uzunhat_vr.Text = uzunHat.VR.ToString();
+                uzunhat_m.Text = "M: " + uzunHat.M.ToString();
+                uzunhat_vr.Text = "VR: " + uzunHat.VR.ToString();
             }
 
 
@@ -435,10 +454,10 @@ namespace WindowsFormsApp1
 
     class Hat
     {
-        public double A = 0;
-        public double B = 0;
-        public double C = 0;
-        public double D = 0;
+        public Complex A;
+        public Complex B;
+        public Complex C;
+        public Complex D;
         public Complex U1;
         public Complex I1;
         public Complex S1;

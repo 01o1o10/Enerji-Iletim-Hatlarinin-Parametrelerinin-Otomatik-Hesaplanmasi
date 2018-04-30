@@ -45,8 +45,10 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.uzunlukyuzde = new System.Windows.Forms.ComboBox();
             this.uzunluk = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.s2katsayisi = new System.Windows.Forms.ComboBox();
             this.hatsonugerilimi = new System.Windows.Forms.ComboBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.katsayitipi = new System.Windows.Forms.ComboBox();
@@ -96,6 +98,8 @@
             this.kisahat_b = new System.Windows.Forms.Label();
             this.kc = new System.Windows.Forms.Label();
             this.kl = new System.Windows.Forms.Label();
+            this.iletimhatuzunlugu = new System.Windows.Forms.Label();
+            this.hatsonugerililmi1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -218,9 +222,9 @@
             // 
             // hesapla
             // 
-            this.hesapla.Location = new System.Drawing.Point(714, 115);
+            this.hesapla.Location = new System.Drawing.Point(586, 41);
             this.hesapla.Name = "hesapla";
-            this.hesapla.Size = new System.Drawing.Size(75, 23);
+            this.hesapla.Size = new System.Drawing.Size(118, 83);
             this.hesapla.TabIndex = 10;
             this.hesapla.Text = "Hesapla";
             this.hesapla.UseVisualStyleBackColor = true;
@@ -345,7 +349,7 @@
             this.toolStripMenuItem2});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(801, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(1162, 24);
             this.menuStrip2.TabIndex = 21;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -363,6 +367,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.uzunlukyuzde);
             this.groupBox5.Controls.Add(this.uzunluk);
             this.groupBox5.Location = new System.Drawing.Point(127, 80);
             this.groupBox5.Name = "groupBox5";
@@ -371,15 +376,36 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "İletim Hattı Uzunluğu";
             // 
+            // uzunlukyuzde
+            // 
+            this.uzunlukyuzde.FormattingEnabled = true;
+            this.uzunlukyuzde.Items.AddRange(new object[] {
+            "10 %",
+            "20 %",
+            "30 %",
+            "40 %",
+            "50 %",
+            "60 %",
+            "70 %",
+            "80 %",
+            "90 %",
+            "100 %"});
+            this.uzunlukyuzde.Location = new System.Drawing.Point(69, 22);
+            this.uzunlukyuzde.Name = "uzunlukyuzde";
+            this.uzunlukyuzde.Size = new System.Drawing.Size(53, 21);
+            this.uzunlukyuzde.TabIndex = 21;
+            this.uzunlukyuzde.Text = "100 %";
+            // 
             // uzunluk
             // 
             this.uzunluk.Location = new System.Drawing.Point(6, 22);
             this.uzunluk.Name = "uzunluk";
-            this.uzunluk.Size = new System.Drawing.Size(116, 20);
+            this.uzunluk.Size = new System.Drawing.Size(57, 20);
             this.uzunluk.TabIndex = 11;
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.s2katsayisi);
             this.groupBox7.Controls.Add(this.hatsonugerilimi);
             this.groupBox7.Location = new System.Drawing.Point(414, 27);
             this.groupBox7.Name = "groupBox7";
@@ -388,6 +414,20 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Hat Sonu Gerilimi";
             // 
+            // s2katsayisi
+            // 
+            this.s2katsayisi.FormattingEnabled = true;
+            this.s2katsayisi.Items.AddRange(new object[] {
+            "0,1",
+            "0,5",
+            "1,0",
+            "1,5"});
+            this.s2katsayisi.Location = new System.Drawing.Point(6, 19);
+            this.s2katsayisi.Name = "s2katsayisi";
+            this.s2katsayisi.Size = new System.Drawing.Size(46, 21);
+            this.s2katsayisi.TabIndex = 20;
+            this.s2katsayisi.Text = "1,0";
+            // 
             // hatsonugerilimi
             // 
             this.hatsonugerilimi.FormattingEnabled = true;
@@ -395,11 +435,10 @@
             "34500",
             "154000",
             "380000"});
-            this.hatsonugerilimi.Location = new System.Drawing.Point(6, 18);
+            this.hatsonugerilimi.Location = new System.Drawing.Point(58, 18);
             this.hatsonugerilimi.Name = "hatsonugerilimi";
-            this.hatsonugerilimi.Size = new System.Drawing.Size(135, 21);
+            this.hatsonugerilimi.Size = new System.Drawing.Size(83, 21);
             this.hatsonugerilimi.TabIndex = 19;
-            this.hatsonugerilimi.Text = "34.5";
             // 
             // groupBox8
             // 
@@ -478,7 +517,7 @@
             this.groupBox9.Controls.Add(this.kl);
             this.groupBox9.Location = new System.Drawing.Point(12, 145);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(777, 270);
+            this.groupBox9.Size = new System.Drawing.Size(1132, 270);
             this.groupBox9.TabIndex = 41;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "groupBox9";
@@ -487,7 +526,7 @@
             // uzunhat_vr
             // 
             this.uzunhat_vr.AutoSize = true;
-            this.uzunhat_vr.Location = new System.Drawing.Point(474, 227);
+            this.uzunhat_vr.Location = new System.Drawing.Point(699, 227);
             this.uzunhat_vr.Name = "uzunhat_vr";
             this.uzunhat_vr.Size = new System.Drawing.Size(30, 13);
             this.uzunhat_vr.TabIndex = 58;
@@ -496,7 +535,7 @@
             // uzunhat_m
             // 
             this.uzunhat_m.AutoSize = true;
-            this.uzunhat_m.Location = new System.Drawing.Point(474, 197);
+            this.uzunhat_m.Location = new System.Drawing.Point(699, 197);
             this.uzunhat_m.Name = "uzunhat_m";
             this.uzunhat_m.Size = new System.Drawing.Size(24, 13);
             this.uzunhat_m.TabIndex = 57;
@@ -505,7 +544,7 @@
             // ortauzunhat_vr
             // 
             this.ortauzunhat_vr.AutoSize = true;
-            this.ortauzunhat_vr.Location = new System.Drawing.Point(474, 157);
+            this.ortauzunhat_vr.Location = new System.Drawing.Point(699, 157);
             this.ortauzunhat_vr.Name = "ortauzunhat_vr";
             this.ortauzunhat_vr.Size = new System.Drawing.Size(30, 13);
             this.ortauzunhat_vr.TabIndex = 56;
@@ -514,7 +553,7 @@
             // ortauzunhat_m
             // 
             this.ortauzunhat_m.AutoSize = true;
-            this.ortauzunhat_m.Location = new System.Drawing.Point(474, 127);
+            this.ortauzunhat_m.Location = new System.Drawing.Point(699, 127);
             this.ortauzunhat_m.Name = "ortauzunhat_m";
             this.ortauzunhat_m.Size = new System.Drawing.Size(24, 13);
             this.ortauzunhat_m.TabIndex = 55;
@@ -523,7 +562,7 @@
             // kisahat_vr
             // 
             this.kisahat_vr.AutoSize = true;
-            this.kisahat_vr.Location = new System.Drawing.Point(474, 88);
+            this.kisahat_vr.Location = new System.Drawing.Point(699, 88);
             this.kisahat_vr.Name = "kisahat_vr";
             this.kisahat_vr.Size = new System.Drawing.Size(30, 13);
             this.kisahat_vr.TabIndex = 54;
@@ -532,7 +571,7 @@
             // kisahat_m
             // 
             this.kisahat_m.AutoSize = true;
-            this.kisahat_m.Location = new System.Drawing.Point(474, 58);
+            this.kisahat_m.Location = new System.Drawing.Point(699, 58);
             this.kisahat_m.Name = "kisahat_m";
             this.kisahat_m.Size = new System.Drawing.Size(24, 13);
             this.kisahat_m.TabIndex = 53;
@@ -541,7 +580,7 @@
             // uzunhat_q1
             // 
             this.uzunhat_q1.AutoSize = true;
-            this.uzunhat_q1.Location = new System.Drawing.Point(377, 227);
+            this.uzunhat_q1.Location = new System.Drawing.Point(482, 227);
             this.uzunhat_q1.Name = "uzunhat_q1";
             this.uzunhat_q1.Size = new System.Drawing.Size(21, 13);
             this.uzunhat_q1.TabIndex = 52;
@@ -550,7 +589,7 @@
             // uzunhat_p1
             // 
             this.uzunhat_p1.AutoSize = true;
-            this.uzunhat_p1.Location = new System.Drawing.Point(377, 197);
+            this.uzunhat_p1.Location = new System.Drawing.Point(482, 197);
             this.uzunhat_p1.Name = "uzunhat_p1";
             this.uzunhat_p1.Size = new System.Drawing.Size(20, 13);
             this.uzunhat_p1.TabIndex = 51;
@@ -559,7 +598,7 @@
             // ortauzunhat_q1
             // 
             this.ortauzunhat_q1.AutoSize = true;
-            this.ortauzunhat_q1.Location = new System.Drawing.Point(377, 154);
+            this.ortauzunhat_q1.Location = new System.Drawing.Point(482, 154);
             this.ortauzunhat_q1.Name = "ortauzunhat_q1";
             this.ortauzunhat_q1.Size = new System.Drawing.Size(21, 13);
             this.ortauzunhat_q1.TabIndex = 50;
@@ -568,7 +607,7 @@
             // ortauzunhat_p1
             // 
             this.ortauzunhat_p1.AutoSize = true;
-            this.ortauzunhat_p1.Location = new System.Drawing.Point(377, 124);
+            this.ortauzunhat_p1.Location = new System.Drawing.Point(482, 124);
             this.ortauzunhat_p1.Name = "ortauzunhat_p1";
             this.ortauzunhat_p1.Size = new System.Drawing.Size(20, 13);
             this.ortauzunhat_p1.TabIndex = 49;
@@ -577,7 +616,7 @@
             // kisahat_q1
             // 
             this.kisahat_q1.AutoSize = true;
-            this.kisahat_q1.Location = new System.Drawing.Point(377, 88);
+            this.kisahat_q1.Location = new System.Drawing.Point(482, 88);
             this.kisahat_q1.Name = "kisahat_q1";
             this.kisahat_q1.Size = new System.Drawing.Size(21, 13);
             this.kisahat_q1.TabIndex = 48;
@@ -586,7 +625,7 @@
             // kisahat_p1
             // 
             this.kisahat_p1.AutoSize = true;
-            this.kisahat_p1.Location = new System.Drawing.Point(377, 58);
+            this.kisahat_p1.Location = new System.Drawing.Point(482, 58);
             this.kisahat_p1.Name = "kisahat_p1";
             this.kisahat_p1.Size = new System.Drawing.Size(20, 13);
             this.kisahat_p1.TabIndex = 47;
@@ -595,7 +634,7 @@
             // q2
             // 
             this.q2.AutoSize = true;
-            this.q2.Location = new System.Drawing.Point(545, 22);
+            this.q2.Location = new System.Drawing.Point(846, 22);
             this.q2.Name = "q2";
             this.q2.Size = new System.Drawing.Size(21, 13);
             this.q2.TabIndex = 46;
@@ -604,7 +643,7 @@
             // p2
             // 
             this.p2.AutoSize = true;
-            this.p2.Location = new System.Drawing.Point(430, 22);
+            this.p2.Location = new System.Drawing.Point(580, 22);
             this.p2.Name = "p2";
             this.p2.Size = new System.Drawing.Size(20, 13);
             this.p2.TabIndex = 45;
@@ -613,7 +652,7 @@
             // uzunhat_i1
             // 
             this.uzunhat_i1.AutoSize = true;
-            this.uzunhat_i1.Location = new System.Drawing.Point(291, 227);
+            this.uzunhat_i1.Location = new System.Drawing.Point(267, 227);
             this.uzunhat_i1.Name = "uzunhat_i1";
             this.uzunhat_i1.Size = new System.Drawing.Size(16, 13);
             this.uzunhat_i1.TabIndex = 44;
@@ -622,7 +661,7 @@
             // uzunhat_u1
             // 
             this.uzunhat_u1.AutoSize = true;
-            this.uzunhat_u1.Location = new System.Drawing.Point(291, 197);
+            this.uzunhat_u1.Location = new System.Drawing.Point(267, 197);
             this.uzunhat_u1.Name = "uzunhat_u1";
             this.uzunhat_u1.Size = new System.Drawing.Size(21, 13);
             this.uzunhat_u1.TabIndex = 43;
@@ -631,7 +670,7 @@
             // ortauzunhat_i1
             // 
             this.ortauzunhat_i1.AutoSize = true;
-            this.ortauzunhat_i1.Location = new System.Drawing.Point(291, 154);
+            this.ortauzunhat_i1.Location = new System.Drawing.Point(267, 154);
             this.ortauzunhat_i1.Name = "ortauzunhat_i1";
             this.ortauzunhat_i1.Size = new System.Drawing.Size(16, 13);
             this.ortauzunhat_i1.TabIndex = 42;
@@ -640,7 +679,7 @@
             // ortauzunhat_u1
             // 
             this.ortauzunhat_u1.AutoSize = true;
-            this.ortauzunhat_u1.Location = new System.Drawing.Point(291, 124);
+            this.ortauzunhat_u1.Location = new System.Drawing.Point(267, 124);
             this.ortauzunhat_u1.Name = "ortauzunhat_u1";
             this.ortauzunhat_u1.Size = new System.Drawing.Size(21, 13);
             this.ortauzunhat_u1.TabIndex = 41;
@@ -649,7 +688,7 @@
             // kisahat_i1
             // 
             this.kisahat_i1.AutoSize = true;
-            this.kisahat_i1.Location = new System.Drawing.Point(291, 88);
+            this.kisahat_i1.Location = new System.Drawing.Point(267, 88);
             this.kisahat_i1.Name = "kisahat_i1";
             this.kisahat_i1.Size = new System.Drawing.Size(16, 13);
             this.kisahat_i1.TabIndex = 40;
@@ -658,7 +697,7 @@
             // kisahat_u1
             // 
             this.kisahat_u1.AutoSize = true;
-            this.kisahat_u1.Location = new System.Drawing.Point(291, 58);
+            this.kisahat_u1.Location = new System.Drawing.Point(267, 58);
             this.kisahat_u1.Name = "kisahat_u1";
             this.kisahat_u1.Size = new System.Drawing.Size(21, 13);
             this.kisahat_u1.TabIndex = 39;
@@ -667,7 +706,7 @@
             // i2
             // 
             this.i2.AutoSize = true;
-            this.i2.Location = new System.Drawing.Point(317, 22);
+            this.i2.Location = new System.Drawing.Point(380, 22);
             this.i2.Name = "i2";
             this.i2.Size = new System.Drawing.Size(16, 13);
             this.i2.TabIndex = 38;
@@ -676,7 +715,7 @@
             // u2
             // 
             this.u2.AutoSize = true;
-            this.u2.Location = new System.Drawing.Point(208, 22);
+            this.u2.Location = new System.Drawing.Point(222, 22);
             this.u2.Name = "u2";
             this.u2.Size = new System.Drawing.Size(21, 13);
             this.u2.TabIndex = 37;
@@ -730,7 +769,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(576, 137);
+            this.label32.Location = new System.Drawing.Point(865, 137);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(100, 13);
             this.label32.TabIndex = 31;
@@ -739,7 +778,7 @@
             // ortauzunhatt_c
             // 
             this.ortauzunhatt_c.AutoSize = true;
-            this.ortauzunhatt_c.Location = new System.Drawing.Point(685, 150);
+            this.ortauzunhatt_c.Location = new System.Drawing.Point(974, 150);
             this.ortauzunhatt_c.Name = "ortauzunhatt_c";
             this.ortauzunhatt_c.Size = new System.Drawing.Size(14, 13);
             this.ortauzunhatt_c.TabIndex = 30;
@@ -748,7 +787,7 @@
             // ortauzunhatt_b
             // 
             this.ortauzunhatt_b.AutoSize = true;
-            this.ortauzunhatt_b.Location = new System.Drawing.Point(757, 127);
+            this.ortauzunhatt_b.Location = new System.Drawing.Point(1046, 127);
             this.ortauzunhatt_b.Name = "ortauzunhatt_b";
             this.ortauzunhatt_b.Size = new System.Drawing.Size(14, 13);
             this.ortauzunhatt_b.TabIndex = 29;
@@ -757,7 +796,7 @@
             // ortauzunhatt_d
             // 
             this.ortauzunhatt_d.AutoSize = true;
-            this.ortauzunhatt_d.Location = new System.Drawing.Point(757, 150);
+            this.ortauzunhatt_d.Location = new System.Drawing.Point(1046, 150);
             this.ortauzunhatt_d.Name = "ortauzunhatt_d";
             this.ortauzunhatt_d.Size = new System.Drawing.Size(15, 13);
             this.ortauzunhatt_d.TabIndex = 28;
@@ -766,7 +805,7 @@
             // ortauzunhatt_a
             // 
             this.ortauzunhatt_a.AutoSize = true;
-            this.ortauzunhatt_a.Location = new System.Drawing.Point(685, 127);
+            this.ortauzunhatt_a.Location = new System.Drawing.Point(974, 127);
             this.ortauzunhatt_a.Name = "ortauzunhatt_a";
             this.ortauzunhatt_a.Size = new System.Drawing.Size(14, 13);
             this.ortauzunhatt_a.TabIndex = 27;
@@ -880,11 +919,31 @@
             this.kl.TabIndex = 16;
             this.kl.Text = "L";
             // 
+            // iletimhatuzunlugu
+            // 
+            this.iletimhatuzunlugu.AutoSize = true;
+            this.iletimhatuzunlugu.Location = new System.Drawing.Point(832, 48);
+            this.iletimhatuzunlugu.Name = "iletimhatuzunlugu";
+            this.iletimhatuzunlugu.Size = new System.Drawing.Size(110, 13);
+            this.iletimhatuzunlugu.TabIndex = 47;
+            this.iletimhatuzunlugu.Text = "İletim Hattı Uzunluğu: ";
+            // 
+            // hatsonugerililmi1
+            // 
+            this.hatsonugerililmi1.AutoSize = true;
+            this.hatsonugerililmi1.Location = new System.Drawing.Point(832, 102);
+            this.hatsonugerililmi1.Name = "hatsonugerililmi1";
+            this.hatsonugerililmi1.Size = new System.Drawing.Size(26, 13);
+            this.hatsonugerililmi1.TabIndex = 48;
+            this.hatsonugerililmi1.Text = "S2: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 427);
+            this.ClientSize = new System.Drawing.Size(1162, 427);
+            this.Controls.Add(this.hatsonugerililmi1);
+            this.Controls.Add(this.iletimhatuzunlugu);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
@@ -956,7 +1015,6 @@
         private System.Windows.Forms.Label ortauzunhat_p1;
         private System.Windows.Forms.Label kisahat_q1;
         private System.Windows.Forms.Label kisahat_p1;
-        private System.Windows.Forms.Label q2;
         private System.Windows.Forms.Label p2;
         private System.Windows.Forms.Label uzunhat_i1;
         private System.Windows.Forms.Label uzunhat_u1;
@@ -988,6 +1046,11 @@
         private System.Windows.Forms.Label kisahat_b;
         private System.Windows.Forms.Label kc;
         private System.Windows.Forms.Label kl;
+        private System.Windows.Forms.Label q2;
+        private System.Windows.Forms.ComboBox uzunlukyuzde;
+        private System.Windows.Forms.ComboBox s2katsayisi;
+        private System.Windows.Forms.Label iletimhatuzunlugu;
+        private System.Windows.Forms.Label hatsonugerililmi1;
     }
 }
 

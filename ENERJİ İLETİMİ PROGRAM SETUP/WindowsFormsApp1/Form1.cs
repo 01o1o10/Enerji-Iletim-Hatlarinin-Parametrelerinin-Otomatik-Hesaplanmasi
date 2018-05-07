@@ -23,7 +23,17 @@ namespace WindowsFormsApp1
         double d;
         double r, rd;
         double L, C;
-        double GMRa, GMRb, GMRc, GMRL, ra, rb, rc, rK;
+        double GMRa, GMRb, GMRc, GMRL, ra, rb, rc, rK, rac, r0;
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private void groupBox9_Enter(object sender, EventArgs e)
         {
@@ -42,47 +52,50 @@ namespace WindowsFormsApp1
         {
             switch (iletkenTipi.Text)
             {
-                case "Stilt": GMR = 10.58; r = 26.31 / 2.0; break;
-                case "Grebe": GMR = 10.18; r = 25.63 / 2.0; break;
-                case "Gannet": GMR = 10.45; r = 25.76 / 2.0; break;
-                case "Gull": GMR = 10.27; r = 25.4 / 2.0; break;
-                case "Flamingo": GMR = 10.21; r = 25.4 / 2.0; break;
-                case "Scoter": GMR = 10.70; r = 25.88 / 2.0; break;
-                case "Egret": GMR = 10.70; r = 25.88 / 2.0; break;
-                case "Grosbeak": GMR = 10.21; r = 25.15 / 2.0; break;
-                case "Goose": GMR = 10.06; r = 24.82 / 2.0; break;
-                case "Rook": GMR = 10.06; r = 24.82 / 2.0; break;
-                case "Kingbind": GMR = 9.27; r = 23.88 / 2.0; break;
-                case "Swirl": GMR = 9.20; r = 23.62 / 2.0; break;
-                case "Wood Duck": GMR = 10.42; r = 25.25 / 2.0; break;
-                case "Teal": GMR = 10.42; r = 25.25 / 2.0; break;
-                case "Squab": GMR = 9.97; r = 25.54 / 2.0; break;
-                case "Peacock": GMR = 9.72; r = 24.21 / 2.0; break;
-                case "Duck": GMR = 9.81; r = 24.21 / 2.0; break;
-                case "Eagle": GMR = 10.00; r = 24.21 / 2.0; break;
-                case "Dove": GMR = 9.54; r = 23.55 / 2.0; break;
-                case "Parakeet": GMR = 9.33; r = 23.22 / 2.0; break;
-                case "Osprey": GMR = 8.66; r = 22.33 / 2.0; break;
-                case "Hen": GMR = 9.27; r = 22.43 / 2.0; break;
-                case "Hawk": GMR = 8.84; r = 21.79 / 2.0; break;
-                case "Flicker": GMR = 8.63; r = 21.49 / 2.0; break;
-                case "Pelican": GMR = 8.02; r = 20.68 / 2.0; break;
-                case "Lark": GMR = 8.44; r = 20.47 / 2.0; break;
-                case "Ibis": GMR = 8.08; r = 19.89 / 2.0; break;
-                case "Brant": GMR = 7.89; r = 19.61 / 2.0; break;
-                case "Chickadee": GMR = 7.32; r = 18.87 / 2.0; break;
-                case "Oriole": GMR = 7.77; r = 18.82 / 2.0; break;
-                case "Linnet": GMR = 7.41; r = 18.29 / 2.0; break;
-                case "Widgeom": GMR = 7.25; r = 18.03 / 2.0; break;
-                case "Merlin": GMR = 6.74; r = 16.46 / 2.0; break;
-                case "Piper": GMR = 7.35; r = 17.78 / 2.0; break;
-                case "Ostrich": GMR = 7.01; r = 17.27 / 2.0; break;
-                case "Gadwall": GMR = 6.86; r = 17.04 / 2.0; break;
-                case "Phobe": GMR = 6.37; r = 16.41 / 2.0; break;
-                case "Junco": GMR = 6.92; r = 16.76 / 2.0; break;
-                case "Partridge": GMR = 6.61; r = 16.31 / 2.0; break;
-                case "Waxwing": GMR = 6.00; r = 15.47 / 2.0; break;
-                case "Drake": GMR = 11.37; r = 28.11 / 2.0; break;
+                case "Stilt": GMR = 10.58; r = 26.31 / 2.0; r0 = 0.728; break;
+                case "Grebe": GMR = 10.18; r = 25.63 / 2.0; r0 = 0.619; break;
+                case "Gannet": GMR = 10.45; r = 25.76 / 2.0; r0 = 0.5757; break;
+                case "Gull": GMR = 10.27; r = 25.4 / 2.0; r0 = 0.8080; break;
+                case "Flamingo": GMR = 10.21; r = 25.4 / 2.0; r0 = 0.1023; break;
+                case "Scoter": GMR = 10.70; r = 25.88 / 2.0; r0 = 0.7474; break;
+                case "Egret": GMR = 10.70; r = 25.88 / 2.0; r0 = 0.777; break;
+                case "Grosbeak": GMR = 10.21; r = 25.15 / 2.0; r0 = 0.7477; break;
+                case "Goose": GMR = 10.06; r = 24.82 / 2.0; r0 = 0.2102; break;
+                case "Rook": GMR = 10.06; r = 24.82 / 2.0; r0 = 0.157; break;
+                case "Kingbind": GMR = 9.27; r = 23.88 / 2.0; r0 = 0.327; break;
+                case "Swirl": GMR = 9.20; r = 23.62 / 2.0; r0 = 0.394; break;
+                case "Wood Duck": GMR = 10.42; r = 25.25 / 2.0; r0 = 0.5533; break;
+                case "Teal": GMR = 10.42; r = 25.25 / 2.0; r0 = 0.4763; break;
+                case "Squab": GMR = 9.97; r = 25.54 / 2.0; r0 = 0.342; break;
+                case "Peacock": GMR = 9.72; r = 24.21 / 2.0; r0 = 0.1763; break;
+                case "Duck": GMR = 9.81; r = 24.21 / 2.0; r0 = 0.1613; break;
+                case "Eagle": GMR = 10.00; r = 24.21 / 2.0; r0 = 0.2664; break;
+                case "Dove": GMR = 9.54; r = 23.55 / 2.0; r0 = 0.3356; break;
+                case "Parakeet": GMR = 9.33; r = 23.22 / 2.0; r0 = 0.1897; break;
+                case "Osprey": GMR = 8.66; r = 22.33 / 2.0; r0 = 0.2002; break;
+                case "Hen": GMR = 9.27; r = 22.43 / 2.0; r0 = 0.1751; break;
+                case "Hawk": GMR = 8.84; r = 21.79 / 2.0; r0 = 0.1194; break;
+                case "Flicker": GMR = 8.63; r = 21.49 / 2.0; r0 = 0.2463; break;
+                case "Pelican": GMR = 8.02; r = 20.68 / 2.0; r0 = 0.2671; break;
+                case "Lark": GMR = 8.44; r = 20.47 / 2.0; r0 = 0.1965; break;
+                case "Ibis": GMR = 8.08; r = 19.89 / 2.0; r0 = 0.959; break;
+                case "Brant": GMR = 7.89; r = 19.61 / 2.0; r0 = 0.743; break;
+                case "Chickadee": GMR = 7.32; r = 18.87 / 2.0; r0 = 0.754; break;
+                case "Oriole": GMR = 7.77; r = 18.82 / 2.0; r0 = 0.3674; break;
+                case "Linnet": GMR = 7.41; r = 18.29 / 2.0; r0 = 0.342; break;
+                case "Widgeom": GMR = 7.25; r = 18.03 / 2.0; r0 = 0.1357; break;
+                case "Merlin": GMR = 6.74; r = 16.46 / 2.0; r0 = 0.1498; break;
+                case "Piper": GMR = 7.35; r = 17.78 / 2.0; r0 = 0.1827; break;
+                case "Ostrich": GMR = 7.01; r = 17.27 / 2.0; r0 = 0.1897; break;
+                case "Gadwall": GMR = 6.86; r = 17.04 / 2.0; r0 = 0.1745; break;
+                case "Phobe": GMR = 6.37; r = 16.41 / 2.0; r0 = 0.2103; break;
+                case "Junco": GMR = 6.92; r = 16.76 / 2.0; r0 = 0.2142; break;
+                case "Partridge": GMR = 6.61; r = 16.31 / 2.0; r0 = 0.2140; break;
+                case "Waxwing": GMR = 6.00; r = 15.47 / 2.0; r0 = 0.3475; break;
+                case "Drake": GMR = 11.37; r = 28.11 / 2.0; r0 = 0.0715; break;
+                case "cardinal": GMR = 12.3201; r = 30.42 / 2.0; r0 = 0.0597; break;
+                case "swallow": GMR = 2.0272; r = 7.14 / 2.0; r0 = 1.0742; break;
+                case "pheasant": GMR = 14.20368; r = 35.1 / 2.0; r0 = 0.0449; break;
             }
         }
         
@@ -147,6 +160,17 @@ namespace WindowsFormsApp1
             Console.WriteLine(direk.g);
             Console.WriteLine(direk.h);
             Console.WriteLine(direk.k);
+            
+            double xr = Math.Sqrt((4 * 2 * Math.PI * 50) / (r0 * 10000));
+
+            if (xr > 3)
+            {
+                rac = r0 * ((xr / 2.828427125) + 0.26);
+            }
+            else
+            {
+                rac = r0 * ((Math.Sqrt(1 + Math.Pow(xr, 4) / 48) + 1) / 2);
+            }
 
             if (string.Compare(dau.Text, "") != 0)
             {
@@ -286,7 +310,7 @@ namespace WindowsFormsApp1
 
                 double uznlk = Convert.ToDouble(uzunluk.Text) * uznlkyuzde;
                 iletimhatuzunlugu.Text = "İletim Hattı Uzunluğu: " + uznlk.ToString();
-                Complex Z = new Complex(0, omega * uznlk);
+                Complex Z = new Complex(rac * uznlk, omega * uznlk);
                 kisaHat.A = 1;
                 kisaHat.B = Z;
                 kisaHat.C = 0;
@@ -297,12 +321,15 @@ namespace WindowsFormsApp1
                 kisahat_c.Text = "[" + Math.Round(kisaHat.C.Real, 2).ToString() + "   " + Math.Round(kisaHat.C.Imaginary, 2).ToString() + "]";
                 kisahat_d.Text = "[" + Math.Round(kisaHat.D.Real, 2).ToString() + "   " + Math.Round(kisaHat.D.Imaginary, 2).ToString() + "]";
 
-                Complex omegaC = new Complex(0, 2 * Math.PI * 50 * C);
+                Complex omegaC = new Complex(0, 2 * Math.PI * 50 * C * uznlk);
                 Complex Y = omegaC;
 
                 ortaUzunHat.A = (1 + (Complex.Multiply(Z, Y) / 2));
                 ortaUzunHat.B = Z;
-                ortaUzunHat.C = (Y + (Complex.Multiply(Complex.Multiply(Z, Y), Y) / 2));
+                ortaUzunHat.C = (Y + (Complex.Multiply(Complex.Multiply(Y, Y), Z) / 4));
+                Console.WriteLine("z y");
+                Console.WriteLine(Z);
+                Console.WriteLine(Y);
                 ortaUzunHat.D = (1 + (Complex.Multiply(Z, Y) / 2));
 
                 ortauzunhat_a.Text = "[" + Math.Round(ortaUzunHat.A.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.A.Imaginary, 2).ToString() + "]";
@@ -321,15 +348,19 @@ namespace WindowsFormsApp1
                 ortauzunhatt_c.Text = "[" + Math.Round(ortaUzunHatT.C.Real, 2).ToString() + "   " + Math.Round(ortaUzunHatT.C.Imaginary, 2).ToString() + "]";
                 ortauzunhatt_d.Text = "[" + Math.Round(ortaUzunHatT.D.Real, 2).ToString() + "   " + Math.Round(ortaUzunHatT.D.Imaginary, 2).ToString() + "]";
 
+                Z = Z / Convert.ToDouble(uzunluk.Text);
+                Y = Y / Convert.ToDouble(uzunluk.Text);
 
-                Complex gamma = new Complex(0, Math.Sqrt(L * C) * 2 * Math.PI * 50 * Convert.ToDouble(uzunluk.Text));
+                Complex gamma = new Complex();
+                gamma = Complex.Sqrt(Complex.Multiply(Z, Y)) * Convert.ToDouble(uzunluk.Text);
 
-                double Zc = Math.Sqrt(L / C);
+                Complex Zc = new Complex();
+                Zc = Complex.Sqrt(Complex.Divide(Z, Y));
 
 
                 uzunHat.A = Complex.Cosh(gamma);
-                uzunHat.B = Complex.Sinh(gamma) * Zc;
-                uzunHat.C = Complex.Sinh(gamma) / Zc;
+                uzunHat.B = Complex.Multiply(Complex.Sinh(gamma), Zc);
+                uzunHat.C = Complex.Divide(Complex.Sinh(gamma), Zc);
                 uzunHat.D = Complex.Cosh(gamma);
 
                 uzunhat_a.Text = "[" + Math.Round(uzunHat.A.Real, 2).ToString() + "   " + Math.Round(uzunHat.A.Imaginary, 2).ToString() + "]";
@@ -372,6 +403,10 @@ namespace WindowsFormsApp1
 
                 ortaUzunHat.U1 = new Complex();
                 ortaUzunHat.U1 = ortaUzunHat.A * U2 + Complex.Multiply(ortaUzunHat.B, I2);
+                Console.WriteLine("U2*O.C");
+                Console.WriteLine(ortaUzunHat.C);
+                Console.WriteLine("O.D * İ2");
+                Console.WriteLine(Complex.Multiply(ortaUzunHat.D, I2));
                 ortaUzunHat.I1 = U2 * ortaUzunHat.C + Complex.Multiply(ortaUzunHat.D, I2);
 
                 ortauzunhat_u1.Text = "U1: " + Math.Round(ortaUzunHat.U1.Real, 2).ToString() + "   " + Math.Round(ortaUzunHat.U1.Imaginary, 2).ToString();
@@ -387,15 +422,19 @@ namespace WindowsFormsApp1
                 double P2 = s2 * gucKatsayisi;
                 double Q2 = s2 * Math.Sin(Math.Acos(gucKatsayisi));
 
-                kisaHat.S1 = 3 * Complex.Multiply(kisaHat.U1, kisaHat.I1);
+                kisaHat.S1 = 3 * Complex.Multiply(kisaHat.U1, new Complex(kisaHat.I1.Real, (-1) * kisaHat.I1.Imaginary));
                 kisaHat.P1 = kisaHat.S1.Real;
                 kisaHat.Q1 = kisaHat.S1.Imaginary;
 
-                ortaUzunHat.S1 = 3 * Complex.Multiply(ortaUzunHat.U1, ortaUzunHat.I1);
+                ortaUzunHat.S1 = 3 * Complex.Multiply(ortaUzunHat.U1, new Complex(ortaUzunHat.I1.Real, (-1) * ortaUzunHat.I1.Imaginary));
+                Console.WriteLine("s1");
+                Console.WriteLine(ortaUzunHat.S1);
                 ortaUzunHat.P1 = ortaUzunHat.S1.Real;
                 ortaUzunHat.Q1 = ortaUzunHat.S1.Imaginary;
 
-                uzunHat.S1 = 3 * Complex.Multiply(uzunHat.U1, uzunHat.I1);
+                uzunHat.S1 = 3 * Complex.Multiply(uzunHat.U1, new Complex(uzunHat.I1.Real, (-1) * uzunHat.I1.Imaginary));
+                Console.WriteLine("s1");
+                Console.WriteLine(uzunHat.S1);
                 uzunHat.P1 = uzunHat.S1.Real;
                 uzunHat.Q1 = uzunHat.S1.Imaginary;
 
